@@ -16,7 +16,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 
 group = 'com.nmmoc7'
-version = '1.16.5-r1-2'
+version = '1.16.5-r1-3'
 
 java {
     archivesBaseName = 'random-botany'

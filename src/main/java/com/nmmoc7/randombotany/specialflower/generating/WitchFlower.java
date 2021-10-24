@@ -28,7 +28,7 @@ public class WitchFlower extends BaseGeneratingFlower {
     private EffectType a = null;
 
     public WitchFlower() {
-        super(ModSpecialFlowers.WITCH);
+        super(ModSpecialFlowers.WITCH.getType());
     }
 
     @Override
@@ -61,12 +61,12 @@ public class WitchFlower extends BaseGeneratingFlower {
                 else {
                     if (a != potion.getPotion().getEffectType()) {
                         a = null;
-                        addMana(13572);
+                        addMana(1357);
                         cooldown = 30;
                     }
                     else {
                         a = potion.getPotion().getEffectType();
-                        addMana(3764);
+                        addMana(376);
                         cooldown = 10;
                     }
                 }
@@ -104,7 +104,7 @@ public class WitchFlower extends BaseGeneratingFlower {
 
     @Override
     public int getMaxMana() {
-        return 90000;
+        return 9000;
     }
 
     @Override

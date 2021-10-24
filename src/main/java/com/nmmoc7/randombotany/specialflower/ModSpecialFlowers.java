@@ -2,13 +2,14 @@ package com.nmmoc7.randombotany.specialflower;
 
 import com.nmmoc7.randombotany.block.FloatingSpecialFlowerBlock;
 import com.nmmoc7.randombotany.block.SpecialFlowerBlock;
+import com.nmmoc7.randombotany.specialflower.generating.FarmerAssistantFlower;
 import com.nmmoc7.randombotany.specialflower.generating.TinyPotatoBelieverFlower;
 import com.nmmoc7.randombotany.specialflower.generating.WitchFlower;
 import com.nmmoc7.randombotany.util.FlowerAB;
 import com.nmmoc7.randombotany.util.FlowerItemAB;
+import com.nmmoc7.randombotany.util.FlowerObj;
 import com.nmmoc7.randombotany.util.LazyAB;
 import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
@@ -34,30 +35,14 @@ public class ModSpecialFlowers {
     public static final ArrayList<FlowerItemAB> MOD_FLOWER_ITEMS = new ArrayList<>();
     public static final Map<String, TileEntityType<? extends TileEntitySpecialFlower>> MOD_FLOWER_TILES = new HashMap<>();
 
-    private static final String TINY_POTATO_BELIEVER_NAME = "believer";
+    public static final FlowerObj<TinyPotatoBelieverFlower> TINY_POTATO_BELIEVER =
+            new FlowerObj<>("believer", Effects.HUNGER, 180, TinyPotatoBelieverFlower::new);
 
-    public static final FlowerAB TINY_POTATO_BELIEVER_BLOCK =
-            createBlockDefault(TINY_POTATO_BELIEVER_NAME, Effects.HUNGER, 180, TinyPotatoBelieverFlower::new);
+    public static final FlowerObj<WitchFlower> WITCH =
+            new FlowerObj<>("witch", Effects.POISON, 180, WitchFlower::new);
 
-    public static final FlowerItemAB TINY_POTATO_BELIEVER_ITEM = createBlockItemDefault(TINY_POTATO_BELIEVER_BLOCK);
-
-    public static final TileEntityType<TinyPotatoBelieverFlower> TINY_POTATO_BELIEVER =
-            createTileDefault(TINY_POTATO_BELIEVER_NAME, TinyPotatoBelieverFlower::new, TINY_POTATO_BELIEVER_BLOCK);
-
-
-    public static final String WITCH_NAME = "witch";
-
-    public static final FlowerAB WITCH_BLOCK =
-            createBlockDefault(WITCH_NAME, Effects.POISON, 180, WitchFlower::new);
-
-    public static final FlowerItemAB WITCH_ITEM = createBlockItemDefault(WITCH_BLOCK);
-
-    public static final TileEntityType<WitchFlower> WITCH = createTileDefault(WITCH_NAME, WitchFlower::new, WITCH_BLOCK);
-
-
-    public static <T extends TileEntitySpecialFlower> TileEntityType<T> createTileDefault(Supplier<T> tile, Block... blocks) {
-        return TileEntityType.Builder.create(tile, blocks).build(null);
-    }
+    public static final FlowerObj<FarmerAssistantFlower> FARMER_ASSISTANT =
+            new FlowerObj<>("farmer_assistant", Effects.LUCK, 180, FarmerAssistantFlower::new);
 
     public static <T extends TileEntitySpecialFlower> TileEntityType<T> createTileDefault(String name, Supplier<T> tile, FlowerAB block) {
         TileEntityType<T> result = TileEntityType.Builder.create(tile, block.getA(), block.getB()).build(null);

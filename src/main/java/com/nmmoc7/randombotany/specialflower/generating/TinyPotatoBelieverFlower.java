@@ -26,7 +26,7 @@ public class TinyPotatoBelieverFlower extends BaseGeneratingFlower {
     int tinyPotatoCount = 0;
 
     public TinyPotatoBelieverFlower() {
-        super(ModSpecialFlowers.TINY_POTATO_BELIEVER);
+        super(ModSpecialFlowers.TINY_POTATO_BELIEVER.getType());
     }
 
     @Override
@@ -46,7 +46,7 @@ public class TinyPotatoBelieverFlower extends BaseGeneratingFlower {
                 cooldown = tinyPotatoCount > 32 ? 50 : 100;
             }
 
-            addMana(2157);
+            addMana(1452);
 
             getWorld().playSound(null, getPos(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.BLOCKS, 1, 0.1F);
             sync();
