@@ -18,16 +18,14 @@ import vazkii.botania.common.item.block.ItemBlockTinyPotato;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class TinyPotatoBeliever extends TileEntityGeneratingFlower {
-    private static final int RANGE = 1;
-
+public class TinyPotatoBelieverFlower extends BaseGeneratingFlower {
     private static final String TAG_COOLDOWN = "cooldown";
     int cooldown = 0;
 
     private static final String TAG_COUNT = "count";
     int tinyPotatoCount = 0;
 
-    public TinyPotatoBeliever() {
+    public TinyPotatoBelieverFlower() {
         super(ModSpecialFlowers.TINY_POTATO_BELIEVER);
     }
 
@@ -35,15 +33,18 @@ public class TinyPotatoBeliever extends TileEntityGeneratingFlower {
     public void tickFlower() {
         super.tickFlower();
 
-        if (world == null || world.isRemote)
+        if (world == null || world.isRemote) {
             return;
+        }
 
-        if(cooldown > 0)
+        if(cooldown > 0) {
             cooldown--;
+        }
 
         if(tinyPotatoCount != 0 && cooldown == 0) {
-            if (--tinyPotatoCount != 0)
+            if (--tinyPotatoCount != 0) {
                 cooldown = tinyPotatoCount > 32 ? 50 : 100;
+            }
 
             addMana(2157);
 
@@ -51,18 +52,8 @@ public class TinyPotatoBeliever extends TileEntityGeneratingFlower {
             sync();
         }
 
-        int slowdown = getSlowdownFactor();
-
-        List<ItemEntity> items = world.getEntitiesWithinAABB(ItemEntity.class,
-                        new AxisAlignedBB(getPos().add(-RANGE, -RANGE, -RANGE),
-                                getPos().add(RANGE + 1, RANGE + 1, RANGE + 1)),
-                        (item) -> {
-                            ItemStack stack = item.getItem();
-                            return !stack.isEmpty() &&
-                                    stack.getItem() instanceof ItemBlockTinyPotato &&
-                                    item.isAlive() &&
-                                    item.getAge() >= slowdown;
-                        });
+        List<ItemEntity> items = searchItems(item ->
+                item.getItem().getItem() instanceof ItemBlockTinyPotato && item.getAge() >= getSlowdownFactor());
 
         for(ItemEntity item : items) {
             ItemStack stack = item.getItem();
@@ -84,6 +75,11 @@ public class TinyPotatoBeliever extends TileEntityGeneratingFlower {
     }
 
     @Override
+    public int getSlowdownFactor() {
+        return 5;
+    }
+
+    @Override
     public void writeToPacketNBT(CompoundNBT cmp) {
         super.writeToPacketNBT(cmp);
         cmp.putInt(TAG_COOLDOWN, cooldown);
@@ -98,11 +94,6 @@ public class TinyPotatoBeliever extends TileEntityGeneratingFlower {
     }
 
     @Override
-    public RadiusDescriptor getRadius() {
-        return new RadiusDescriptor.Square(getEffectivePos(), RANGE);
-    }
-
-    @Override
     public int getMaxMana() {
         return 90000;
     }
@@ -110,5 +101,10 @@ public class TinyPotatoBeliever extends TileEntityGeneratingFlower {
     @Override
     public int getColor() {
         return 0xD3D604;
+    }
+
+    @Override
+    int getRange() {
+        return 1;
     }
 }

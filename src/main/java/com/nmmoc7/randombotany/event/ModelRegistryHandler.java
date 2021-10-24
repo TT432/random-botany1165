@@ -12,6 +12,7 @@ import vazkii.botania.client.render.tile.RenderTileSpecialFlower;
 public class ModelRegistryHandler {
     @SubscribeEvent
     public static void onModelRegister(ModelRegistryEvent event) {
-        ClientRegistry.bindTileEntityRenderer(ModSpecialFlowers.TINY_POTATO_BELIEVER, RenderTileSpecialFlower::new);
+        ModSpecialFlowers.MOD_FLOWER_TILES.values().forEach(tile ->
+                ClientRegistry.bindTileEntityRenderer(tile, RenderTileSpecialFlower::new));
     }
 }

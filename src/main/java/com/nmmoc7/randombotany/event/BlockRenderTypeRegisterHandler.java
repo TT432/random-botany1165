@@ -13,7 +13,9 @@ public class BlockRenderTypeRegisterHandler {
     @SubscribeEvent
     public static void onRenderTypeSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            RenderTypeLookup.setRenderLayer(ModSpecialFlowers.TINY_POTATO_BELIEVER_BLOCK.getA(), RenderType.getCutout());
+            ModSpecialFlowers.MOD_FLOWERS.values().forEach(flowerAB -> {
+                RenderTypeLookup.setRenderLayer(flowerAB.getA(), RenderType.getCutout());
+            });
         });
     }
 }

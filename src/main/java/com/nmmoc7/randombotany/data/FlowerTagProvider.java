@@ -28,7 +28,8 @@ public class FlowerTagProvider {
     }
 
     private static void addTags() {
-        addFloating(ModSpecialFlowers.TINY_POTATO_BELIEVER_BLOCK.getB());
+        ModSpecialFlowers.MOD_FLOWERS.values().forEach(flowerAB ->
+                addFloating(flowerAB.getB()));
     }
 
     static void addFloating(Block block) {

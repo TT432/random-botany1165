@@ -59,8 +59,8 @@ public class FlowerJsonProvider {
         flowerItemJson.put(name, FlowerJson.flowerItem(block));
     }
 
-    private static void putFloating(String name, Block block) {
-        flowerJsonModel.put(name, FlowerJson.flowerBlockModelFloating(block));
+    private static void putFloating(String name, Block unFloating, Block block) {
+        flowerJsonModel.put(name, FlowerJson.flowerBlockModelFloating(unFloating));
         flowerJsonBlockState.put(name, FlowerJson.flowerBlockState(block));
         flowerItemJson.put(name, FlowerJson.flowerBlockItemFloating(block));
     }
@@ -68,7 +68,7 @@ public class FlowerJsonProvider {
     private static void addFlowers() {
         ModSpecialFlowers.MOD_FLOWERS.forEach((name, flower) -> {
             put(name, flower.getA());
-            putFloating(name + "_floating", flower.getB());
+            putFloating(name + "_floating", flower.getA(), flower.getB());
         });
     }
 

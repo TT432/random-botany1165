@@ -2,7 +2,8 @@ package com.nmmoc7.randombotany.specialflower;
 
 import com.nmmoc7.randombotany.block.FloatingSpecialFlowerBlock;
 import com.nmmoc7.randombotany.block.SpecialFlowerBlock;
-import com.nmmoc7.randombotany.specialflower.generating.TinyPotatoBeliever;
+import com.nmmoc7.randombotany.specialflower.generating.TinyPotatoBelieverFlower;
+import com.nmmoc7.randombotany.specialflower.generating.WitchFlower;
 import com.nmmoc7.randombotany.util.FlowerAB;
 import com.nmmoc7.randombotany.util.FlowerItemAB;
 import com.nmmoc7.randombotany.util.LazyAB;
@@ -36,12 +37,22 @@ public class ModSpecialFlowers {
     private static final String TINY_POTATO_BELIEVER_NAME = "believer";
 
     public static final FlowerAB TINY_POTATO_BELIEVER_BLOCK =
-            createBlockDefault(TINY_POTATO_BELIEVER_NAME, Effects.HUNGER, 180, TinyPotatoBeliever::new);
+            createBlockDefault(TINY_POTATO_BELIEVER_NAME, Effects.HUNGER, 180, TinyPotatoBelieverFlower::new);
 
     public static final FlowerItemAB TINY_POTATO_BELIEVER_ITEM = createBlockItemDefault(TINY_POTATO_BELIEVER_BLOCK);
 
-    public static final TileEntityType<TinyPotatoBeliever> TINY_POTATO_BELIEVER =
-            createTileDefault(TINY_POTATO_BELIEVER_NAME, TinyPotatoBeliever::new, TINY_POTATO_BELIEVER_BLOCK);
+    public static final TileEntityType<TinyPotatoBelieverFlower> TINY_POTATO_BELIEVER =
+            createTileDefault(TINY_POTATO_BELIEVER_NAME, TinyPotatoBelieverFlower::new, TINY_POTATO_BELIEVER_BLOCK);
+
+
+    public static final String WITCH_NAME = "witch";
+
+    public static final FlowerAB WITCH_BLOCK =
+            createBlockDefault(WITCH_NAME, Effects.POISON, 180, WitchFlower::new);
+
+    public static final FlowerItemAB WITCH_ITEM = createBlockItemDefault(WITCH_BLOCK);
+
+    public static final TileEntityType<WitchFlower> WITCH = createTileDefault(WITCH_NAME, WitchFlower::new, WITCH_BLOCK);
 
 
     public static <T extends TileEntitySpecialFlower> TileEntityType<T> createTileDefault(Supplier<T> tile, Block... blocks) {
