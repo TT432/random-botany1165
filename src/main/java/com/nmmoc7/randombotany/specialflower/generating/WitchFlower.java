@@ -8,7 +8,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.EffectType;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.server.ServerWorld;
@@ -87,6 +86,7 @@ public class WitchFlower extends BaseGeneratingFlower {
                 );
 
                 sync();
+                break;
             }
         }
     }

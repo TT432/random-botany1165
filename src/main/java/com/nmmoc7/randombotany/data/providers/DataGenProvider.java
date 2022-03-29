@@ -25,6 +25,8 @@ public abstract class DataGenProvider {
     }
 
     public void generate() {
+        preGenerate();
+
         for (AbstractJsonProvider provider : providers) {
             provider.generate();
         }

@@ -1,4 +1,8 @@
 {
   "block.random-botany.believer": "小土豆信徒",
-  "block.random-botany.believer_floating": "浮空小土豆信徒"
+  "block.random-botany.believer_floating": "浮空小土豆信徒",
+  "block.random-botany.witch": "女巫花",
+  "block.random-botany.witch_floating": "浮空女巫花",
+  "block.random-botany.citron": "充能柚子",
+  "block.random-botany.citron_floating": "浮空充能柚子"
 }

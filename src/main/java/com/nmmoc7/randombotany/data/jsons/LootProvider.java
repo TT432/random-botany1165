@@ -56,6 +56,7 @@ public class LootProvider extends AbstractFlowerJsonProvider {
         entries1.addProperty("name", new ResourceLocation(RandomBotany.MOD_ID, name).toString());
         entries.add(entries1);
         pools1.add("entries", entries);
+        pools.add(pools1);
 
         JsonArray conditions = new JsonArray();
         JsonObject conditions1 = new JsonObject();

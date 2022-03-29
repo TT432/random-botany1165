@@ -30,17 +30,17 @@ public abstract class AbstractJsonProvider {
     }
 
     protected Path normalPath(String path, ResourceLocation resourceLocation) {
-        return out().resolve("assets" + resourceLocation.getPath() + "/" + path + "/" + resourceLocation.getPath() + ".json");
+        return out().resolve("assets/" + resourceLocation.getNamespace() + "/" + path + "/" + resourceLocation.getPath() + ".json");
     }
 
     protected Path dataPath(String path, ResourceLocation resourceLocation) {
-        return out().resolve("data" + resourceLocation.getPath() + "/" + path + "/" + resourceLocation.getPath() + ".json");
+        return out().resolve("data/" + resourceLocation.getNamespace() + "/" + path + "/" + resourceLocation.getPath() + ".json");
     }
 
     protected void save(Path path, JsonObject json) {
         try {
             if (path.toFile().exists()) {
-                return;
+                path.toFile().delete();
             }
 
             Files.createDirectories(path.getParent());
