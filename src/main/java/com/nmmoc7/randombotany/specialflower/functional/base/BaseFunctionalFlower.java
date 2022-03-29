@@ -1,4 +1,4 @@
-package com.nmmoc7.randombotany.specialflower.functional;
+package com.nmmoc7.randombotany.specialflower.functional.base;
 
 import net.minecraft.tileentity.TileEntityType;
 import vazkii.botania.api.subtile.RadiusDescriptor;
@@ -16,7 +16,18 @@ public abstract class BaseFunctionalFlower extends TileEntityFunctionalFlower {
      * 获取作用范围
      * @return range
      */
-    abstract int getRange();
+    abstract public int getRange();
+
+    /**
+     * 获取消耗
+     * @return cost
+     */
+    abstract public int cost();
+
+    @Override
+    public int getMaxMana() {
+        return cost();
+    }
 
     @Override
     public RadiusDescriptor getRadius() {

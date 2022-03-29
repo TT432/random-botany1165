@@ -2,6 +2,9 @@ package com.nmmoc7.randombotany.util;
 
 import net.minecraftforge.common.util.Lazy;
 
+/**
+ * @author DustW
+ */
 public class LazyAB<A, B> {
     final Lazy<A> aObj;
     final Lazy<B> bObj;

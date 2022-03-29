@@ -8,6 +8,7 @@
  */
 package com.nmmoc7.randombotany.data;
 
+import com.nmmoc7.randombotany.data.providers.FlowerJsonProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,12 +22,8 @@ public class DataGenerators {
 		DataGenerator gen = evt.getGenerator();
 		ExistingFileHelper ex = evt.getExistingFileHelper();
 
-		if (evt.includeServer()) {
-			FlowerTagProvider.a();
-		}
-
 		if (evt.includeClient()) {
-			FlowerJsonProvider.a();
+			new FlowerJsonProvider(gen).generate();
 		}
 	}
 }

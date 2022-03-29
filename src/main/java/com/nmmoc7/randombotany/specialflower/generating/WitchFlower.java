@@ -1,22 +1,22 @@
 package com.nmmoc7.randombotany.specialflower.generating;
 
 import com.nmmoc7.randombotany.specialflower.ModSpecialFlowers;
+import com.nmmoc7.randombotany.specialflower.generating.base.BaseGeneratingFlower;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.PotionItem;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.*;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.EffectType;
+import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.server.ServerWorld;
-import vazkii.botania.api.subtile.TileEntityGeneratingFlower;
-import vazkii.botania.common.item.block.ItemBlockTinyPotato;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author DustW
@@ -25,7 +25,7 @@ public class WitchFlower extends BaseGeneratingFlower {
     private static final String TAG_COOLDOWN = "cooldown";
     private int cooldown;
 
-    private EffectType a = null;
+    Map<Effect, Integer> map = new HashMap<>();
 
     public WitchFlower() {
         super(ModSpecialFlowers.WITCH.getType());
@@ -35,13 +35,11 @@ public class WitchFlower extends BaseGeneratingFlower {
     public void tickFlower() {
         super.tickFlower();
 
-        if (world.isRemote) {
+        if (world == null || world.isRemote) {
             return;
         }
 
-        cooldown = Math.max(cooldown - 1, 0);
-
-        if (cooldown <= 0) {
+        if (cooldown-- <= 0) {
             List<ItemEntity> items = searchItems(itemEntity ->
                     itemEntity.getItem().getItem() instanceof PotionItem &&
                             itemEntity.getAge() > getSlowdownFactor());
@@ -53,26 +51,34 @@ public class WitchFlower extends BaseGeneratingFlower {
                     continue;
                 }
 
-                EffectInstance potion = potions.get(0);
+                ArrayList<Effect> unRemoveList = new ArrayList<>();
 
-                if (a == null) {
-                    a = potion.getPotion().getEffectType();
-                }
-                else {
-                    if (a != potion.getPotion().getEffectType()) {
-                        a = null;
-                        addMana(1357);
-                        cooldown = 30;
+                int mana = 0;
+
+                for (EffectInstance potion : potions) {
+                    Effect effect = potion.getPotion();
+
+                    if (map.containsKey(effect)) {
+                        int before = map.get(effect);
+                        map.put(effect, before + 1);
+
+                        mana += 1 / (before + 1) * 3500;
                     }
                     else {
-                        a = potion.getPotion().getEffectType();
-                        addMana(376);
-                        cooldown = 10;
+                        map.put(effect, 1);
+
+                        mana += 3500;
                     }
+
+                    unRemoveList.add(effect);
                 }
 
+                addMana(mana);
+                item.getItem().shrink(1);
+
+                map.entrySet().removeIf(e -> !unRemoveList.contains(e.getKey()));
+
                 item.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, 0.2F, 0.6F);
-                sync();
                 ((ServerWorld) getWorld()).spawnParticle(ParticleTypes.ENTITY_EFFECT,
                         item.getPosX(), item.getPosY(), item.getPosZ(),
                         20,
@@ -80,7 +86,7 @@ public class WitchFlower extends BaseGeneratingFlower {
                         0.05D
                 );
 
-                item.remove();
+                sync();
             }
         }
     }
@@ -103,17 +109,12 @@ public class WitchFlower extends BaseGeneratingFlower {
     }
 
     @Override
-    public int getMaxMana() {
-        return 9000;
-    }
-
-    @Override
     public int getColor() {
         return 0xD3D604;
     }
 
     @Override
-    int getRange() {
+    public int getRange() {
         return 0;
     }
 }
