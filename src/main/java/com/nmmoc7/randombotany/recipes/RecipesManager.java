@@ -5,7 +5,6 @@ import com.nmmoc7.randombotany.recipes.objects.IRecipeObject;
 import com.nmmoc7.randombotany.recipes.objects.ItemObject;
 import com.nmmoc7.randombotany.recipes.objects.TagObject;
 import com.nmmoc7.randombotany.specialflower.ModSpecialFlowers;
-import org.lwjgl.system.CallbackI;
 import vazkii.botania.common.block.ModBlocks;
 
 import java.util.*;
@@ -16,29 +15,29 @@ import java.util.*;
 public class RecipesManager {
     private static final Map<String, List<IRecipeObject>> PETAL_APOTHECARY_RECIPES = new HashMap<>();
 
-    private static final TagObject ORANGE = new TagObject("petals/orange");
-    private static final TagObject GREEN = new TagObject("petals/green");
-    private static final TagObject WHITE = new TagObject("petals/white");
-    private static final TagObject purple = new TagObject("petals/purple");
-    private static final TagObject black = new TagObject("petals/black");
+    private static final TagObject ORANGE = petals("orange");
+    private static final TagObject GREEN = petals("green");
+    private static final TagObject WHITE = petals("white");
+    private static final TagObject PURPLE = petals("purple");
+    private static final TagObject BLACK = petals("black");
 
-    private static final TagObject MANA = new TagObject("runes/mana");
-    private static final TagObject WRATH = new TagObject("runes/wrath");
+    private static final TagObject MANA = rune("mana");
+    private static final TagObject WRATH = rune("wrath");
 
     private static final ItemObject TINY_POTATO = new ItemObject(ModBlocks.tinyPotato);
 
     static {
         petal(ModSpecialFlowers.TINY_POTATO_BELIEVER.getName(),
                 GREEN, GREEN,
-                black, black,
+                BLACK, BLACK,
                 MANA,
                 TINY_POTATO
         );
 
         petal(ModSpecialFlowers.WITCH.getName(),
                 GREEN, GREEN,
-                purple, purple,
-                black,
+                PURPLE, PURPLE,
+                BLACK,
                 MANA
         );
 
@@ -54,6 +53,14 @@ public class RecipesManager {
 
     private static void petal(String name, IRecipeObject... recipeObjs) {
         PETAL_APOTHECARY_RECIPES.put(name, Arrays.asList(recipeObjs));
+    }
+
+    private static TagObject rune(String name) {
+        return new TagObject("runes/" + name);
+    }
+
+    private static TagObject petals(String name) {
+        return new TagObject("petals/" + name);
     }
 
     public static JsonArray getPetal(String name) {

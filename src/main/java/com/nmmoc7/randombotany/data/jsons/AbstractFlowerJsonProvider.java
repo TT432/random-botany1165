@@ -22,7 +22,8 @@ public abstract class AbstractFlowerJsonProvider extends AbstractJsonProvider {
     @Override
     public void put(String name, Block normal, Block floating) {
         map.put(name, getNormalJson(name, normal, floating));
-        map.put(name + "_floating", getFloatingJson(name, normal, floating));
+        String fName = name + "_floating";
+        map.put(fName, getFloatingJson(fName, normal, floating));
     }
 
     @Override
