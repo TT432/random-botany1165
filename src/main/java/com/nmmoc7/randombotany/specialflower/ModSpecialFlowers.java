@@ -1,6 +1,7 @@
 package com.nmmoc7.randombotany.specialflower;
 
 import com.nmmoc7.randombotany.specialflower.functional.Citron;
+import com.nmmoc7.randombotany.specialflower.functional.Vacuity;
 import com.nmmoc7.randombotany.specialflower.generating.TinyPotatoBelieverFlower;
 import com.nmmoc7.randombotany.specialflower.generating.WitchFlower;
 import com.nmmoc7.randombotany.util.FlowerAB;
@@ -27,4 +28,7 @@ public class ModSpecialFlowers {
 
     public static final FlowerObj<Citron> CITRON =
             new FlowerObj<>("citron", Effects.SPEED, 180, Citron::new);
+
+    public static final FlowerObj<Vacuity> VACUITY =
+            new FlowerObj<>("vacuity", Effects.WATER_BREATHING, 60, Vacuity::new);
 }

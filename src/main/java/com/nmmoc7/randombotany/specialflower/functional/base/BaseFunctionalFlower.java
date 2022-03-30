@@ -1,7 +1,10 @@
 package com.nmmoc7.randombotany.specialflower.functional.base;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import vazkii.botania.api.subtile.RadiusDescriptor;
 import vazkii.botania.api.subtile.TileEntityFunctionalFlower;
@@ -53,6 +56,14 @@ public abstract class BaseFunctionalFlower extends TileEntityFunctionalFlower {
         }
 
         return result;
+    }
+
+    protected <T extends Entity> List<T> searchEntities(Class<T> clazz, @Nullable Predicate<Entity> filter) {
+        return world.getEntitiesWithinAABB(clazz,
+                new AxisAlignedBB(getPos().add(-getRange(), -getRange(), -getRange()),
+                        getPos().add(getRange() + 1, getRange() + 1, getRange() + 1)),
+                (entity) ->
+                        entity.isAlive() && (filter == null || filter.test(entity)));
     }
 
     @Override

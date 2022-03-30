@@ -49,6 +49,12 @@ public class RecipesManager {
                 MANA,
                 WRATH
         );
+
+        petal(ModSpecialFlowers.VACUITY.getName(),
+                WHITE, WHITE, WHITE, WHITE,
+                WHITE, WHITE, WHITE,
+                MANA
+        );
     }
 
     private static void petal(String name, IRecipeObject... recipeObjs) {
@@ -64,9 +70,11 @@ public class RecipesManager {
     }
 
     public static JsonArray getPetal(String name) {
-        List<IRecipeObject> list = PETAL_APOTHECARY_RECIPES.get(name);
         JsonArray result = new JsonArray();
-        list.forEach(o -> result.add(o.getJson()));
+        if (PETAL_APOTHECARY_RECIPES.containsKey(name)) {
+            List<IRecipeObject> list = PETAL_APOTHECARY_RECIPES.get(name);
+            list.forEach(o -> result.add(o.getJson()));
+        }
         return result;
     }
 }
