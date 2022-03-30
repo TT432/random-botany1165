@@ -12,7 +12,8 @@ public class FlowerJsonProvider extends DataGenProvider {
                 new BlockModelProvider(gen),
                 new ItemModelProvider(gen),
                 new TagProvider(gen),
-                new LootProvider(gen)
+                new LootProvider(gen),
+                new RecipesProvider(gen)
         );
     }
 

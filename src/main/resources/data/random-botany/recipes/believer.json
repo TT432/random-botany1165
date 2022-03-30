@@ -1,0 +1,26 @@
+{
+  "type": "botania:petal_apothecary",
+  "output": {
+    "item": "random-botany:believer"
+  },
+  "ingredients": [
+    {
+      "tag": "botania:petals/green"
+    },
+    {
+      "tag": "botania:petals/green"
+    },
+    {
+      "tag": "botania:petals/black"
+    },
+    {
+      "tag": "botania:petals/black"
+    },
+    {
+      "tag": "botania:runes/mana"
+    },
+    {
+      "item": "botania:tiny_potato"
+    }
+  ]
+}
