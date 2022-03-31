@@ -5,6 +5,7 @@ import com.nmmoc7.randombotany.recipes.objects.IRecipeObject;
 import com.nmmoc7.randombotany.recipes.objects.ItemObject;
 import com.nmmoc7.randombotany.recipes.objects.TagObject;
 import com.nmmoc7.randombotany.specialflower.ModSpecialFlowers;
+import net.minecraft.item.Items;
 import vazkii.botania.common.block.ModBlocks;
 
 import java.util.*;
@@ -20,11 +21,15 @@ public class RecipesManager {
     private static final TagObject WHITE = petals("white");
     private static final TagObject PURPLE = petals("purple");
     private static final TagObject BLACK = petals("black");
+    private static final TagObject LIGHT_GRAY = petals("light_gray");
+    private static final TagObject RED = petals("red");
 
     private static final TagObject MANA = rune("mana");
     private static final TagObject WRATH = rune("wrath");
+    private static final TagObject GLUTTONY = rune("gluttony");
 
     private static final ItemObject TINY_POTATO = new ItemObject(ModBlocks.tinyPotato);
+    private static final ItemObject ENCHANTED_BOOK = new ItemObject(Items.ENCHANTED_BOOK);
 
     static {
         petal(ModSpecialFlowers.TINY_POTATO_BELIEVER.getName(),
@@ -54,6 +59,14 @@ public class RecipesManager {
                 WHITE, WHITE, WHITE, WHITE,
                 WHITE, WHITE, WHITE,
                 MANA
+        );
+
+        petal(ModSpecialFlowers.CURSEATER.getName(),
+                ENCHANTED_BOOK,
+                LIGHT_GRAY, LIGHT_GRAY, LIGHT_GRAY,
+                GLUTTONY, GLUTTONY, GLUTTONY,
+                RED, RED, RED, RED,
+                RED, RED, RED
         );
     }
 

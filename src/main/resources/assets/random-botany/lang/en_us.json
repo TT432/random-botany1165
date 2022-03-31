@@ -1,8 +1,12 @@
 {
-  "block.random-botany.believer": "Believer of Tiny Potato",
-  "block.random-botany.believer_floating": "Floating Believer of Tiny Potato",
+  "block.random-botany.believer": "小土豆信徒",
+  "block.random-botany.believer_floating": "浮空小土豆信徒",
   "block.random-botany.witch": "女巫花",
   "block.random-botany.witch_floating": "浮空女巫花",
   "block.random-botany.citron": "加速香橼",
-  "block.random-botany.citron_floating": "浮空加速香橼"
+  "block.random-botany.citron_floating": "浮空加速香橼",
+  "block.random-botany.vacuity": "真空花",
+  "block.random-botany.vacuity_floating": "浮空真空花",
+  "block.random-botany.curseater": "喰咒蓟",
+  "block.random-botany.curseater_floating": "浮空喰咒蓟"
 }
