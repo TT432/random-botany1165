@@ -7,6 +7,7 @@ import com.nmmoc7.randombotany.recipes.objects.TagObject;
 import com.nmmoc7.randombotany.specialflower.ModSpecialFlowers;
 import net.minecraft.item.Items;
 import vazkii.botania.common.block.ModBlocks;
+import vazkii.botania.common.item.ModItems;
 
 import java.util.*;
 
@@ -27,9 +28,19 @@ public class RecipesManager {
     private static final TagObject MANA = rune("mana");
     private static final TagObject WRATH = rune("wrath");
     private static final TagObject GLUTTONY = rune("gluttony");
+    private static final TagObject PRIDE = rune("pride");
 
     private static final ItemObject TINY_POTATO = new ItemObject(ModBlocks.tinyPotato);
     private static final ItemObject ENCHANTED_BOOK = new ItemObject(Items.ENCHANTED_BOOK);
+
+    private static final ItemObject WILL1 = new ItemObject(ModItems.ancientWillAhrim);
+    private static final ItemObject WILL2 = new ItemObject(ModItems.ancientWillDharok);
+    private static final ItemObject WILL3 = new ItemObject(ModItems.ancientWillGuthan);
+    private static final ItemObject WILL4 = new ItemObject(ModItems.ancientWillKaril);
+    private static final ItemObject WILL5 = new ItemObject(ModItems.ancientWillTorag);
+    private static final ItemObject WILL6 = new ItemObject(ModItems.ancientWillVerac);
+
+    private static final ItemObject LIFE_ESSENCE = new ItemObject(ModItems.lifeEssence);
 
     static {
         petal(ModSpecialFlowers.TINY_POTATO_BELIEVER.getName(),
@@ -67,6 +78,18 @@ public class RecipesManager {
                 GLUTTONY, GLUTTONY, GLUTTONY,
                 RED, RED, RED, RED,
                 RED, RED, RED
+        );
+
+        petal(ModSpecialFlowers.WILLEATER.getName(),
+                WILL1,
+                WILL2,
+                WILL3,
+                WILL4,
+                WILL5,
+                WILL6,
+                LIFE_ESSENCE, LIFE_ESSENCE, LIFE_ESSENCE, LIFE_ESSENCE,
+                PRIDE, PRIDE,
+                GREEN, GREEN, GREEN, GREEN
         );
     }
 

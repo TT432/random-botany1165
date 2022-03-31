@@ -4,6 +4,7 @@ import com.nmmoc7.randombotany.specialflower.functional.Citron;
 import com.nmmoc7.randombotany.specialflower.functional.Curseater;
 import com.nmmoc7.randombotany.specialflower.functional.Vacuity;
 import com.nmmoc7.randombotany.specialflower.generating.TinyPotatoBelieverFlower;
+import com.nmmoc7.randombotany.specialflower.generating.Willeater;
 import com.nmmoc7.randombotany.specialflower.generating.WitchFlower;
 import com.nmmoc7.randombotany.util.FlowerAB;
 import com.nmmoc7.randombotany.util.FlowerItemAB;
@@ -21,11 +22,18 @@ public class ModSpecialFlowers {
     public static final ArrayList<FlowerItemAB> MOD_FLOWER_ITEMS = new ArrayList<>();
     public static final Map<String, TileEntityType<? extends TileEntitySpecialFlower>> MOD_FLOWER_TILES = new HashMap<>();
 
+    /* 产能花 */
+
     public static final FlowerObj<TinyPotatoBelieverFlower> TINY_POTATO_BELIEVER =
             new FlowerObj<>("believer", Effects.HUNGER, 180, TinyPotatoBelieverFlower::new);
 
     public static final FlowerObj<WitchFlower> WITCH =
             new FlowerObj<>("witch", Effects.POISON, 180, WitchFlower::new);
+
+    public static final FlowerObj<Willeater> WILLEATER =
+            new FlowerObj<>("willeater", Effects.STRENGTH, 60, Willeater::new);
+
+    /* 功能花 */
 
     public static final FlowerObj<Citron> CITRON =
             new FlowerObj<>("citron", Effects.SPEED, 180, Citron::new);
